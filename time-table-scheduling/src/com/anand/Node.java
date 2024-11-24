@@ -6,32 +6,38 @@ public class Node {
     private String subject;
     private String type;
     private int timeSlot;
-    private ArrayList<Node> neighborNodes;
+    private int day;
+    private final ArrayList<Node> neighborNodes;
 
-    public Node(String subject, String type) {
+    public Node(String subject, String type, int day) {
         this.subject = subject;
         this.type = type;
         this.timeSlot = -1;
+        this.day = day;
         this.neighborNodes = new ArrayList<>();
     }
 
-    // Add neighboring nodes
-    public void addNeighbourNodes (Node neighbor) {
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void addNeighbourNodes(Node neighbor) {
         this.neighborNodes.add(neighbor);
     }
 
-    // Assigns Time Slot
-    public boolean timeConflict (int timeSlot) {
-        for (Node neighbor: neighborNodes) {
-            if(this.timeSlot == timeSlot) {
+    public boolean timeConflict(int timeSlot) {
+        for (Node neighbor : neighborNodes) {
+            if (this.timeSlot == timeSlot) {
                 return true;
             }
         }
         return false;
     }
 
-
-    //Getter and Setters
     public String getSubject() {
         return subject;
     }
